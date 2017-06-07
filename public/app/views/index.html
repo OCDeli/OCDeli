@@ -9,19 +9,37 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!--CSS-->
+
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+
+    <!--Main Angular Files-->
 
     <script src="assets/js/angular.js"></script>
     <script src="assets/js/angular-route.js"></script>
+
+    <!--Angular Config/Routes-->
+
     <script src="app/app.module.js"></script>
     <script src="app/routes.js"></script>
+    <script src="app/controllers/register.controller.js"></script>
+    <script src="app/controllers/main.controller.js"></script>
+    
+
+    <!--Angular Factories-->
+
+    <script src="app/core/user.factory.js"></script>
+    <script src="app/core/auth.factory.js"></script>
+    <script src="app/core/token.factory.js"></script>
+    <script src="app/core/interceptors.factory.js"></script>
+
 
 
     <title>Theme Template for Bootstrap</title>
 
   </head>
 
-  <body ng-app="app">
+  <body ng-app="app" ng-controller="MainController as mainCtrl" ng-show="mainCtrl.loadMe" ng-cloak>
 
     <!-- Fixed navbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -38,8 +56,9 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a ng-show="!mainCtrl.isLoggedIn" href="/login">Login</a></li>
+            <li><a ng-show="!mainCtrl.isLoggedIn" href="/register">Register</a></li>
+            <li><a ng-show="mainCtrl.isLoggedIn" href="#" ng-click="mainCtrl.logout();">Logout</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -52,6 +71,7 @@
                 <li><a href="#">One more separated link</a></li>
               </ul>
             </li>
+            <li><a ng-show="mainCtrl.isLoggedIn" href="/profile">Hello {{ mainCtrl.username }}</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

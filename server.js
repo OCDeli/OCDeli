@@ -7,6 +7,8 @@ var mongoose    = require("mongoose");
 var bodyParser  = require('body-parser');
 var userRoute   = require("./app/routes/user.route");
 var path        = require('path');
+var passport    = require('passport');
+var social      = require('./app/passport/passport')(app, passport);
 
 // middleware
 
@@ -30,7 +32,7 @@ app.get('*', function(req, res) {
 
 // routes
 
-app.use('/users', userRoute);
+app.use('/api', userRoute);
 
 // server port
 
