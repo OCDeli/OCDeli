@@ -1,14 +1,13 @@
 // packages
-var express     = require("express");
-var app         = express();
-var port        = process.env.PORT || 8080;
-var morgan      = require("morgan");
-var mongoose    = require("mongoose");
-var bodyParser  = require('body-parser');
-var userRoute   = require("./app/routes/user.route");
-var path        = require('path');
-var passport    = require('passport');
-var social      = require('./app/passport/passport')(app, passport);
+var express    = require("express");
+var app        = express();
+var port       = process.env.PORT || 8080;
+var morgan     = require("morgan");
+var mongoose   = require("mongoose");
+var bodyParser = require('body-parser');
+var userRoute  = require("./app/routes/user.route");
+var path       = require('path');
+
 
 // middleware
 
